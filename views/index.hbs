@@ -1,2 +1,10 @@
 <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
+<a href="/login">Log In</a>
+{{#unless user}}
+  Home page
+  <div>
+    <a href="/auth/google">Login</a>
+  </div>
+{{/unless}}
+{{!-- <p>Don't have an accout? <a href="/auth/register">Sign Up</a></p> --}}

@@ -1,0 +1,47 @@
+<h1>User: {{user.username}}</h1>
+<p>Role: {{user.role}}</p>
+<form action="/auth/logout" method="POST">
+  <button type="submit">Log out</button>
+</form>
+<p>Employees:</p>
+<ul>
+  {{#each users as |user|}}
+    <li>
+      <p>Username: {{user.username}}</p>
+      <p>Role: {{user.role}}</p>
+      </li>
+  {{/each}}
+</ul>
+<p>Update your profile:</p>
+<form  action="/auth/update"  method="POST" >
+  <input type="text" placeholder="&ensp;Username" name="username" value={{user.username}} autofocus>
+  <input type="password" placeholder="&ensp;Password" name="password">
+  
+      <select name="role">
+        <option selected disabled>&ensp;Role</option>
+        <option value="Developer">Developer</option>
+        <option value="TA">Teacher Assistant</option>
+        <option value="Alum">Student</option>
+      </select>
+  
+  <button type="submit">
+    
+        Update
+  
+  </button>
+<p>Existing courses:</p>
+  <ul>
+    {{#each courses as |course|}}
+      <li>{{course.name}} -- {{created_at}}<br>{{course.description}}</li>
+    {{/each}}
+</form>
+{{#if ta}}
+  <h2>Create a new course</h2>
+  <form action="/user/create" method="POST" enctype="application/x-www-form-urlencoded">
+    <input type="text" placeholder="&ensp;Course Name" name="name"><br>
+    <textarea cols="30" rows="10" placeholder="&ensp;Description" name="description" ></textarea>
+    <button type="submit">Create</button>
+  </form>
+  
+  </ul>
+{{/if}}

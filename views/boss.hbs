@@ -1,0 +1,41 @@
+<h1>User: {{user.username}}</h1>
+<p>Role: {{user.role}}</p>
+<form action="/auth/logout" method="POST">
+  <button type="submit">Log out</button>
+</form>
+
+<p>Create new employee:</p>
+<form
+ 
+      action="/auth/create/"
+ 
+  method="POST" >
+  <input type="text" placeholder="&ensp;Username" name="username" autofocus>
+  <input type="password" placeholder="&ensp;Password" name="password">
+  
+      <select name="role">
+        <option selected disabled>&ensp;Role</option>
+        <option value="Boss">Boss</option>
+        <option value="Developer">Developer</option>
+        <option value="TA">Teacher Assistant</option>
+        <option value="Alum">Student</option>
+      </select>
+  
+  <button type="submit">
+    
+        Create
+  
+  </button>
+</form>
+
+<p style="color: red;">{{errorMessage}}</p>
+<p>Employees:</p>
+<ul>
+  {{#each users as |user|}}
+    <li>
+      <p>Username: {{user.username}}</p>
+      <p>Role: {{user.role}}</p>
+      <a href="/boss/delete/{{user._id}}">Delete</a>
+    </li>
+  {{/each}}
+</ul>
